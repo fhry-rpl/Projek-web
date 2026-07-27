@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGalleryRequest;
 use App\Http\Requests\UpdateGalleryRequest;
 use App\Models\Gallery;
-use App\Models\GalleryImage;
 use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
@@ -14,12 +13,14 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = Gallery::withCount('images')->latest()->paginate(15);
+
         return view('admin.galleries.index', compact('galleries'));
     }
 
     public function show(Gallery $gallery)
     {
         $gallery->load('images');
+
         return view('admin.galleries.show', compact('gallery'));
     }
 
@@ -38,6 +39,7 @@ class GalleryController extends Controller
         foreach ($request->file('images', []) as $image) {
             $gallery->images()->create(['image_path' => $image->store('galleries', 'uploads')]);
         }
+
         return redirect()->route('admin.galleries.index')
             ->with('success', 'Galeri berhasil dibuat.');
     }
@@ -45,6 +47,7 @@ class GalleryController extends Controller
     public function edit(Gallery $gallery)
     {
         $gallery->load('images');
+
         return view('admin.galleries.form', compact('gallery'));
     }
 
@@ -65,6 +68,7 @@ class GalleryController extends Controller
                 $gallery->images()->create(['image_path' => $image->store('galleries', 'uploads')]);
             }
         }
+
         return redirect()->route('admin.galleries.index')
             ->with('success', 'Galeri berhasil diperbarui.');
     }
@@ -77,6 +81,7 @@ class GalleryController extends Controller
         }
         $gallery->images()->delete();
         $gallery->delete();
+
         return redirect()->route('admin.galleries.index')
             ->with('success', 'Galeri berhasil dihapus.');
     }

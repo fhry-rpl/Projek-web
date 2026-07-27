@@ -20,6 +20,7 @@ class DocumentController extends Controller
     public function index()
     {
         $documents = $this->documentRepo->all(15);
+
         return view('admin.documents.index', compact('documents'));
     }
 
@@ -31,6 +32,7 @@ class DocumentController extends Controller
     public function create()
     {
         $categories = $this->categoryRepo->findByType('dokumen');
+
         return view('admin.documents.form', compact('categories'));
     }
 
@@ -40,6 +42,7 @@ class DocumentController extends Controller
         $data['file_path'] = $request->file('file')->store('documents');
         $data['user_id'] = auth()->id();
         Document::create($data);
+
         return redirect()->route('admin.documents.index')
             ->with('success', 'Dokumen berhasil diunggah.');
     }
@@ -47,6 +50,7 @@ class DocumentController extends Controller
     public function edit(Document $document)
     {
         $categories = $this->categoryRepo->findByType('dokumen');
+
         return view('admin.documents.form', compact('document', 'categories'));
     }
 
@@ -58,6 +62,7 @@ class DocumentController extends Controller
             $data['file_path'] = $request->file('file')->store('documents', 'uploads');
         }
         $document->update($data);
+
         return redirect()->route('admin.documents.index')
             ->with('success', 'Dokumen berhasil diperbarui.');
     }
@@ -66,6 +71,7 @@ class DocumentController extends Controller
     {
         Storage::disk('uploads')->delete($document->file_path);
         $document->delete();
+
         return redirect()->route('admin.documents.index')
             ->with('success', 'Dokumen berhasil dihapus.');
     }

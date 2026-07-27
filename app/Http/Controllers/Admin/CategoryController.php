@@ -12,6 +12,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::orderBy('order')->paginate(15);
+
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -28,6 +29,7 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         Category::create($request->validated());
+
         return redirect()->route('admin.categories.index')
             ->with('success', 'Kategori berhasil dibuat.');
     }
@@ -40,6 +42,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
+
         return redirect()->route('admin.categories.index')
             ->with('success', 'Kategori berhasil diperbarui.');
     }
@@ -47,6 +50,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return redirect()->route('admin.categories.index')
             ->with('success', 'Kategori berhasil dihapus.');
     }

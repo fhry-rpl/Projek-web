@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Gallery extends Model
 {
     use HasFactory;
+
     protected $fillable = ['title', 'description', 'cover_image', 'is_published', 'published_at'];
 
     protected function casts(): array

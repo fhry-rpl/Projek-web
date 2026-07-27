@@ -41,7 +41,7 @@ class DocumentRepository implements DocumentRepositoryInterface
             ->where('is_published', true)
             ->where(function ($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('description', 'like', "%{$query}%");
+                    ->orWhere('description', 'like', "%{$query}%");
             })
             ->latest('published_at')
             ->paginate($perPage);
@@ -71,6 +71,7 @@ class DocumentRepository implements DocumentRepositoryInterface
     {
         $doc = Document::findOrFail($id);
         $doc->update($data);
+
         return $doc;
     }
 

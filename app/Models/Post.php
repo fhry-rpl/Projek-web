@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Post extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id', 'category_id', 'title', 'slug', 'excerpt',
         'body', 'thumbnail', 'is_published', 'published_at',

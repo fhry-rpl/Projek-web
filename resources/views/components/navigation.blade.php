@@ -92,9 +92,9 @@ if (!function_exists('isActive')) {
         </nav>
 
         <div class="flex items-center gap-2">
-            <button @click="openSearch = true" class="rounded-lg p-2 text-gray-400 dark:text-dark-muted transition hover:bg-primary-50 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-300" aria-label="Pencarian">
+            <button @click="$dispatch('open-search')" class="rounded-lg p-2 text-gray-400 dark:text-dark-muted transition hover:bg-primary-50 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-300" aria-label="Pencarian">
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            </a>
+            </button>
             <button @click="toggle()" class="rounded-lg p-2 text-gray-400 dark:text-dark-muted transition lg:hidden hover:bg-primary-50 dark:hover:bg-primary-900/30" aria-label="Toggle menu" :aria-expanded="isOpen">
                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path :class="{ 'hidden': isOpen, 'block': !isOpen }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -167,45 +167,6 @@ if (!function_exists('isActive')) {
         </div>
     </div>
 
-    {{-- Search Modal --}}
-    <div
-        x-show="openSearch"
-        x-transition:enter="transition ease-out duration-200"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-150"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
-        class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex items-start justify-center pt-[15vh]"
-        @click.self="openSearch = false"
-        @keydown.escape.window="openSearch = false"
-    >
-        <div
-            x-show="openSearch"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 scale-95 translate-y-4"
-            x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-            x-transition:leave="transition ease-in duration-150"
-            x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-            x-transition:leave-end="opacity-0 scale-95 translate-y-4"
-            class="w-full max-w-lg mx-4"
-        >
-            <form action="{{ route('search') }}" method="GET" class="bg-white dark:bg-dark-surface rounded-2xl shadow-modal border border-border dark:border-dark-border overflow-hidden">
-                <div class="flex items-center gap-3 px-5 py-4">
-                    <svg class="h-5 w-5 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <input
-                        type="text"
-                        name="q"
-                        placeholder="Cari berita, dokumen, layanan..."
-                        class="flex-1 border-0 bg-transparent text-sm text-gray-900 dark:text-dark-text placeholder-gray-400 focus:outline-none focus:ring-0"
-                        x-ref="searchInput"
-                        autocomplete="off"
-                    >
-                    <kbd class="hidden sm:inline-flex items-center rounded-lg border border-border dark:border-dark-border px-2 py-1 text-xs text-gray-400 font-mono">ESC</kbd>
-                </div>
-            </form>
-        </div>
-    </div>
 </nav>
 
 

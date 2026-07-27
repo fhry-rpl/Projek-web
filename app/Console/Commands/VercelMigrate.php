@@ -31,6 +31,7 @@ class VercelMigrate extends Command
 
         if ($exitCode !== 0) {
             $this->error('Migration failed');
+
             return Command::FAILURE;
         }
 
@@ -41,6 +42,7 @@ class VercelMigrate extends Command
         }
 
         $this->info('Migration completed successfully');
+
         return Command::SUCCESS;
     }
 }

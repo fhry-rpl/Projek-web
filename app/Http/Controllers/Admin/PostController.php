@@ -21,6 +21,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->postRepo->all(15);
+
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -32,6 +33,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = $this->categoryRepo->all();
+
         return view('admin.posts.form', compact('categories'));
     }
 
@@ -46,6 +48,7 @@ class PostController extends Controller
         }
         $data['user_id'] = auth()->id();
         Post::create($data);
+
         return redirect()->route('admin.posts.index')
             ->with('success', 'Postingan berhasil dibuat.');
     }
@@ -53,6 +56,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = $this->categoryRepo->all();
+
         return view('admin.posts.form', compact('post', 'categories'));
     }
 
@@ -69,6 +73,7 @@ class PostController extends Controller
             $data['thumbnail'] = $request->file('thumbnail')->store('posts/thumbnails', 'uploads');
         }
         $post->update($data);
+
         return redirect()->route('admin.posts.index')
             ->with('success', 'Postingan berhasil diperbarui.');
     }
@@ -79,6 +84,7 @@ class PostController extends Controller
             Storage::disk('uploads')->delete($post->thumbnail);
         }
         $post->delete();
+
         return redirect()->route('admin.posts.index')
             ->with('success', 'Postingan berhasil dihapus.');
     }

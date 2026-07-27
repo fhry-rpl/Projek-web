@@ -14,6 +14,7 @@ class ContactController extends Controller
     public function index()
     {
         $submissions = $this->contactRepo->all(15);
+
         return view('admin.contacts.index', compact('submissions'));
     }
 
@@ -21,12 +22,14 @@ class ContactController extends Controller
     {
         $submission = $this->contactRepo->findById($id);
         $this->contactRepo->markAsRead($id);
+
         return view('admin.contacts.show', compact('submission'));
     }
 
     public function destroy(int $id)
     {
         $this->contactRepo->delete($id);
+
         return redirect()->route('admin.contacts.index')
             ->with('success', 'Pesan berhasil dihapus.');
     }

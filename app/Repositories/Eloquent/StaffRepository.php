@@ -31,6 +31,7 @@ class StaffRepository implements StaffRepositoryInterface
     {
         $s = Staff::findOrFail($id);
         $s->update($data);
+
         return $s;
     }
 

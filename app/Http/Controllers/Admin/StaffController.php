@@ -17,6 +17,7 @@ class StaffController extends Controller
     public function index()
     {
         $staff = $this->staffRepo->all();
+
         return view('admin.staff.index', compact('staff'));
     }
 
@@ -32,6 +33,7 @@ class StaffController extends Controller
             $data['photo'] = $request->file('photo')->store('staff', 'uploads');
         }
         $this->staffRepo->create($data);
+
         return redirect()->route('admin.staff.index')
             ->with('success', 'Staf berhasil ditambahkan.');
     }
@@ -39,6 +41,7 @@ class StaffController extends Controller
     public function edit(int $id)
     {
         $staff = $this->staffRepo->findById($id);
+
         return view('admin.staff.form', compact('staff'));
     }
 
@@ -53,6 +56,7 @@ class StaffController extends Controller
             $data['photo'] = $request->file('photo')->store('staff', 'uploads');
         }
         $this->staffRepo->update($id, $data);
+
         return redirect()->route('admin.staff.index')
             ->with('success', 'Staf berhasil diperbarui.');
     }
@@ -64,6 +68,7 @@ class StaffController extends Controller
             Storage::disk('uploads')->delete($staff->photo);
         }
         $this->staffRepo->delete($id);
+
         return redirect()->route('admin.staff.index')
             ->with('success', 'Staf berhasil dihapus.');
     }

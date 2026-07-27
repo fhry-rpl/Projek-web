@@ -36,6 +36,7 @@ class PageRepository implements PageRepositoryInterface
     {
         $p = Page::findOrFail($id);
         $p->update($data);
+
         return $p;
     }
 

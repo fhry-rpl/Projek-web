@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Document;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DocumentFactory extends Factory
 {
-    protected $model = \App\Models\Document::class;
+    protected $model = Document::class;
 
     public function definition(): array
     {

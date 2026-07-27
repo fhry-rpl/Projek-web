@@ -44,6 +44,7 @@ class GalleryRepository implements GalleryRepositoryInterface
     {
         $g = Gallery::findOrFail($id);
         $g->update($data);
+
         return $g;
     }
 

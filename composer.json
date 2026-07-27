@@ -13,6 +13,7 @@
         "league/flysystem-aws-s3-v3": "^3.0"
     },
     "require-dev": {
+        "laravel/boost": "^2.4",
         "laravel/breeze": "^2.4",
         "laravel/pail": "^1.2.5",
         "laravel/pint": "^1.27",

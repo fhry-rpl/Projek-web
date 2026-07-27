@@ -12,7 +12,6 @@ document.addEventListener('alpine:init', () => {
         isOpen: false,
         openMobile: null,
         openDropdown: null,
-        openSearch: false,
         hoverTimeout: null,
         scrolled: false,
 
@@ -37,17 +36,6 @@ document.addEventListener('alpine:init', () => {
                 }
             });
 
-            this.$watch('openSearch', (val) => {
-                if (val) {
-                    this.$nextTick(() => {
-                        const input = this.$refs?.searchInput;
-                        if (input) setTimeout(() => input.focus(), 100);
-                    });
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = '';
-                }
-            });
         },
 
         initScroll() {

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Document extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'category_id', 'user_id', 'title', 'slug', 'description',
         'file_path', 'file_type', 'file_size', 'download_count',

@@ -16,6 +16,7 @@ class MenuController extends Controller
     public function index()
     {
         $menus = MenuItem::root()->ordered()->with('children')->get();
+
         return view('admin.menus.index', compact('menus'));
     }
 
@@ -23,6 +24,7 @@ class MenuController extends Controller
     {
         $parents = MenuItem::root()->ordered()->get();
         $routes = $this->getAvailableRoutes();
+
         return view('admin.menus.form', compact('parents', 'routes'));
     }
 
@@ -48,7 +50,7 @@ class MenuController extends Controller
 
         $data['is_active'] = $request->boolean('is_active', true);
 
-        if (!isset($data['order'])) {
+        if (! isset($data['order'])) {
             $data['order'] = MenuItem::where('parent_id', $data['parent_id'])->max('order') + 1;
         }
 
@@ -63,6 +65,7 @@ class MenuController extends Controller
     {
         $parents = MenuItem::root()->ordered()->where('id', '!=', $menu->id)->get();
         $routes = $this->getAvailableRoutes();
+
         return view('admin.menus.form', compact('menu', 'parents', 'routes'));
     }
 

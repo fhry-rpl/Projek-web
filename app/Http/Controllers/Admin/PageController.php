@@ -12,6 +12,7 @@ class PageController extends Controller
     public function index()
     {
         $pages = Page::latest()->paginate(15);
+
         return view('admin.pages.index', compact('pages'));
     }
 
@@ -28,6 +29,7 @@ class PageController extends Controller
     public function store(StorePageRequest $request)
     {
         Page::create($request->validated());
+
         return redirect()->route('admin.pages.index')
             ->with('success', 'Halaman berhasil dibuat.');
     }
@@ -40,6 +42,7 @@ class PageController extends Controller
     public function update(UpdatePageRequest $request, Page $page)
     {
         $page->update($request->validated());
+
         return redirect()->route('admin.pages.index')
             ->with('success', 'Halaman berhasil diperbarui.');
     }
@@ -47,6 +50,7 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         $page->delete();
+
         return redirect()->route('admin.pages.index')
             ->with('success', 'Halaman berhasil dihapus.');
     }

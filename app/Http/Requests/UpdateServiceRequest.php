@@ -15,7 +15,7 @@ class UpdateServiceRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'slug' => 'required|max:255|unique:services,slug,' . $this->route('service')->getKey(),
+            'slug' => 'required|max:255|unique:services,slug,'.$this->route('service')->getKey(),
             'icon' => 'nullable|max:100',
             'description' => 'required',
             'procedure' => 'nullable',

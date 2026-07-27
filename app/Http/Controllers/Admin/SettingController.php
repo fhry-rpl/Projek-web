@@ -15,6 +15,7 @@ class SettingController extends Controller
     public function index()
     {
         $settings = $this->settingRepo->getAll();
+
         return view('admin.settings.index', compact('settings'));
     }
 
@@ -23,6 +24,7 @@ class SettingController extends Controller
         foreach ($request->validated()['settings'] as $key => $value) {
             $this->settingRepo->set($key, $value);
         }
+
         return redirect()->route('admin.settings.index')
             ->with('success', 'Pengaturan berhasil diperbarui.');
     }

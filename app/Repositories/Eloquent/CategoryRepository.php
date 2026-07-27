@@ -31,6 +31,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $cat = Category::findOrFail($id);
         $cat->update($data);
+
         return $cat;
     }
 

@@ -39,7 +39,7 @@ class PostRepository implements PostRepositoryInterface
     {
         return Post::with('category')
             ->where('is_published', true)
-            ->whereHas('category', fn($q) => $q->where('type', $categoryType))
+            ->whereHas('category', fn ($q) => $q->where('type', $categoryType))
             ->latest('published_at')
             ->paginate($perPage);
     }
@@ -64,8 +64,8 @@ class PostRepository implements PostRepositoryInterface
             ->where('is_published', true)
             ->where(function ($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('body', 'like', "%{$query}%")
-                  ->orWhere('excerpt', 'like', "%{$query}%");
+                    ->orWhere('body', 'like', "%{$query}%")
+                    ->orWhere('excerpt', 'like', "%{$query}%");
             })
             ->latest('published_at')
             ->paginate($perPage);
@@ -85,6 +85,7 @@ class PostRepository implements PostRepositoryInterface
     {
         $post = Post::findOrFail($id);
         $post->update($data);
+
         return $post;
     }
 

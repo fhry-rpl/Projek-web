@@ -31,6 +31,7 @@ class ServiceRepository implements ServiceRepositoryInterface
     {
         $svc = Service::findOrFail($id);
         $svc->update($data);
+
         return $svc;
     }
 

@@ -34,6 +34,7 @@ class DocumentController extends Controller
     public function show(int $id)
     {
         $document = $this->documentRepo->findById($id);
+
         return view('documents.show', compact('document'));
     }
 
@@ -41,6 +42,7 @@ class DocumentController extends Controller
     {
         $document = $this->documentRepo->findById($id);
         $this->documentRepo->incrementDownload($id);
+
         return Storage::disk('uploads')->download($document->file_path);
     }
 }

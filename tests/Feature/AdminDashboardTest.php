@@ -2,6 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
+use App\Models\Document;
+use App\Models\Gallery;
+use App\Models\Page;
+use App\Models\Post;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -61,42 +67,42 @@ class AdminDashboardTest extends TestCase
     {
         $user = User::where('is_admin', true)->first();
 
-        $post = \App\Models\Post::first();
+        $post = Post::first();
         if ($post) {
             $response = $this->actingAs($user)->get("/admin/posts/{$post->id}");
             $response->assertStatus(200);
             $response->assertSee($post->title);
         }
 
-        $document = \App\Models\Document::first();
+        $document = Document::first();
         if ($document) {
             $response = $this->actingAs($user)->get("/admin/documents/{$document->id}");
             $response->assertStatus(200);
             $response->assertSee($document->title);
         }
 
-        $category = \App\Models\Category::first();
+        $category = Category::first();
         if ($category) {
             $response = $this->actingAs($user)->get("/admin/categories/{$category->id}");
             $response->assertStatus(200);
             $response->assertSee($category->name);
         }
 
-        $service = \App\Models\Service::first();
+        $service = Service::first();
         if ($service) {
             $response = $this->actingAs($user)->get("/admin/services/{$service->id}");
             $response->assertStatus(200);
             $response->assertSee($service->title);
         }
 
-        $gallery = \App\Models\Gallery::first();
+        $gallery = Gallery::first();
         if ($gallery) {
             $response = $this->actingAs($user)->get("/admin/galleries/{$gallery->id}");
             $response->assertStatus(200);
             $response->assertSee($gallery->title);
         }
 
-        $page = \App\Models\Page::first();
+        $page = Page::first();
         if ($page) {
             $response = $this->actingAs($user)->get("/admin/pages/{$page->id}");
             $response->assertStatus(200);

@@ -19,6 +19,7 @@ class ContactController extends Controller
     public function store(StoreContactSubmissionRequest $request)
     {
         $this->contactRepo->create($request->validated());
+
         return redirect()->route('contact.index')
             ->with('success', 'Pesan Anda telah dikirim. Terima kasih.');
     }
