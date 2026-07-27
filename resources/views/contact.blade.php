@@ -43,7 +43,7 @@
                 <div>
                     <div class="card p-8">
                         <h2 class="text-xl font-bold text-gray-900 dark:text-dark-text font-heading">Kirim Pesan</h2>
-                        <form method="POST" action="{{ route('contact.store') }}" class="mt-6 space-y-5" x-data="formHandler()">
+                        <form method="POST" action="{{ route('contact.store') }}" class="mt-6 space-y-5" onsubmit="event.preventDefault(); handleFormSubmit(this)">
                             @csrf
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 dark:text-dark-muted">Nama <span class="text-error-500">*</span></label>
@@ -70,9 +70,9 @@
                                 <textarea id="message" name="message" rows="5" required maxlength="5000" class="mt-1 block w-full rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface px-4 py-2.5 text-sm text-gray-900 dark:text-dark-text shadow-sm focus:border-primary-500 focus:ring-primary-500/20 @error('message') border-error-500 @enderror">{{ old('message') }}</textarea>
                                 @error('message') <p class="mt-1 text-xs text-error-600">{{ $message }}</p> @enderror
                             </div>
-                            <button type="submit" class="btn-primary w-full btn-lg" :disabled="loading">
-                                <span x-show="!loading">Kirim Pesan</span>
-                                <span x-show="loading" class="flex items-center gap-2">
+                            <button type="submit" data-submit-btn class="btn-primary w-full btn-lg">
+                                <span data-submit-text>Kirim Pesan</span>
+                                <span data-submit-loading class="hidden items-center gap-2">
                                     <svg class="h-4 w-4 animate-spin" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
                                     Mengirim...
                                 </span>
@@ -83,4 +83,4 @@
             </div>
         </div>
     </section>
-@endsection
+@endSection

@@ -7,7 +7,7 @@
     <section class="relative overflow-hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900">
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent"></div>
-        <div class="relative mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8 lg:py-44" x-data="scrollReveal">
+        <div class="relative mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8 lg:py-44" data-scroll-reveal>
             <div class="max-w-3xl reveal">
                 <div class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-white/90 border border-white/20 mb-8">
                     <span class="w-1.5 h-1.5 rounded-full bg-accent-400 animate-pulse"></span>
@@ -36,7 +36,7 @@
 
     {{-- =============== SECTION 2: LAYANAN =============== --}}
     @if ($services->isNotEmpty())
-        <section class="py-20 sm:py-28" x-data="scrollReveal">
+        <section class="py-20 sm:py-28" data-scroll-reveal>
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="max-w-2xl mx-auto text-center reveal">
                     <span class="inline-flex items-center rounded-full bg-primary-50 dark:bg-primary-900/30 px-3 py-1 text-sm font-medium text-primary-700 dark:text-primary-300">Layanan</span>
@@ -60,7 +60,7 @@
 
     {{-- =============== SECTION 3: BERITA =============== --}}
     @if ($latestPosts->isNotEmpty())
-        <section class="bg-surface-alt dark:bg-dark-surface-alt py-20 sm:py-28" x-data="scrollReveal">
+        <section class="bg-surface-alt dark:bg-dark-surface-alt py-20 sm:py-28" data-scroll-reveal>
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 reveal">
                     <div class="max-w-xl">
@@ -108,7 +108,7 @@
 
     {{-- =============== SECTION 4: PENGUMUMAN =============== --}}
     @if (!empty($pengumuman))
-        <section class="py-20 sm:py-28" x-data="scrollReveal">
+        <section class="py-20 sm:py-28" data-scroll-reveal>
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 reveal">
                     <div class="max-w-xl">
@@ -149,7 +149,7 @@
 
     {{-- =============== SECTION 5: GALERI =============== --}}
     @if ($latestGalleries->isNotEmpty())
-        <section class="bg-surface-alt dark:bg-dark-surface-alt py-20 sm:py-28" x-data="scrollReveal">
+        <section class="bg-surface-alt dark:bg-dark-surface-alt py-20 sm:py-28" data-scroll-reveal>
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 reveal">
                     <div class="max-w-xl">
@@ -183,7 +183,7 @@
     @endif
 
     {{-- =============== SECTION 6: KONTAK =============== --}}
-    <section class="bg-primary-800 py-20" x-data="scrollReveal">
+    <section class="bg-primary-800 py-20" data-scroll-reveal>
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl mx-auto text-center reveal">
                 <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-sm font-medium text-white/80 border border-white/10">Kontak</span>

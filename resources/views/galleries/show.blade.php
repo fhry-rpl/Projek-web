@@ -17,26 +17,12 @@
                 <p class="mt-3 text-lg text-gray-600 dark:text-dark-muted">{{ $gallery->description }}</p>
             @endif
             @if ($gallery->images->isNotEmpty())
-                <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" x-data="lightbox()">
+                <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach ($gallery->images as $index => $image)
-                        <button @click="openGallery({{ $index }}, @json($gallery->images->pluck('image_path')->map(fn($p) => Storage::url($p))))" class="group overflow-hidden rounded-xl card-hover">
+                        <button onclick="openLightbox({{ $index }}, {{ json_encode($gallery->images->pluck('image_path')->map(fn($p) => Storage::url($p))->values()->toArray()) }})" class="group overflow-hidden rounded-xl card-hover">
                             <img src="{{ Storage::url($image->image_path) }}" alt="" class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                         </button>
                     @endforeach
-                    <template x-teleport="body">
-                        <div x-show="open" @click.away="close()" @keydown.escape="close()" @keydown.arrow-right="next()" @keydown.arrow-left="prev()" x-transition.opacity class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" role="dialog" aria-modal="true">
-                            <button @click="close()" class="absolute top-4 right-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition">
-                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                            </button>
-                            <button @click="prev()" class="absolute left-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition">
-                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                            </button>
-                            <img :src="images.length ? images[currentIndex] : ''" alt="" class="max-h-[85vh] max-w-full rounded-2xl object-contain shadow-2xl">
-                            <button @click="next()" class="absolute right-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition">
-                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </button>
-                        </div>
-                    </template>
                 </div>
             @endif
             <div class="mt-10 pt-8 border-t border-border dark:border-dark-border flex flex-wrap gap-4">
@@ -51,4 +37,17 @@
             </div>
         </div>
     </section>
+
+    <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4" role="dialog" aria-modal="true">
+        <button id="lightboxClose" class="absolute top-4 right-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <button id="lightboxPrev" class="absolute left-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <img id="lightboxImg" src="" alt="" class="max-h-[85vh] max-w-full rounded-2xl object-contain shadow-2xl">
+        <button id="lightboxNext" class="absolute right-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+    </div>
 @endsection

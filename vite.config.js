@@ -21,20 +21,4 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
-    build: {
-        rollupOptions: {
-            output: {
-                manualChunks(id) {
-                    if (id.includes('node_modules/alpinejs') || id.includes('node_modules/lucide')) {
-                        return 'vendor';
-                    }
-                },
-            },
-        },
-    },
-    server: {
-        watch: {
-            ignored: ['**/storage/framework/views/**'],
-        },
-    },
 });

@@ -17,10 +17,10 @@
                 <input type="text" id="position" name="position" value="{{ old('position', $staff->position ?? '') }}" required maxlength="255" class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 @error('position') border-red-500 @enderror">
                 @error('position') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
-            <div x-data="{ photoSize: 0 }">
+            <div data-file-size="photoSize">
                 <label for="photo" class="block text-sm font-medium text-gray-700">Foto</label>
-                <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp" @change="photoSize = $event.target.files[0]?.size || 0" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:rounded-lg file:border-0 file:bg-indigo-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-indigo-600 hover:file:bg-indigo-100">
-                <p x-show="photoSize > 2097152" class="mt-1 text-xs text-red-600">Ukuran foto tidak boleh lebih dari 2 MB.</p>
+                <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp" >
+                <p id="photoSize" class="hidden" class="mt-1 text-xs text-red-600">Ukuran foto tidak boleh lebih dari 2 MB.</p>
             </div>
             <div>
                 <label for="bio" class="block text-sm font-medium text-gray-700">Bio</label>
